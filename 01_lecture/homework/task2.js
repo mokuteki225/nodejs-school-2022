@@ -13,10 +13,10 @@ const wrapper = (func) => {
 
       cache.set(key, funcResult);
 
-      return funcResult + ' calculated';
+      return funcResult;
     }
 
-    return cachedValue + ' from cache';
+    return cachedValue;
   }
 }
 
