@@ -1,8 +1,8 @@
-const sortString = (str) => {
+const sortString = (str: string): string => {
   return str.split('').sort().join();
 }
 
-const checkAnagrams = (str1, str2) => {
+const checkAnagrams = (str1: string, str2: string): boolean => {
   return sortString(str1) === sortString(str2);
 }
 

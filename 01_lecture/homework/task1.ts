@@ -1,4 +1,4 @@
-const deepClone = (obj) => {
+const deepClone = (obj: Object): Object => {
   return JSON.parse(JSON.stringify(obj));
 }
 
