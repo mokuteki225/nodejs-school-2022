@@ -1,23 +1,31 @@
 class MyEventEmitter {
-    handlers: Map<string, Function> = new Map();
+    handlers: Map<string, Array<Function>> = new Map();
 
     registerHandler(key: string, func: Function) {
-        this.handlers.set(key, func);
+      const eventHandlers = this.handlers.get(key) ?? [];
+
+      eventHandlers.push(func);
+
+      this.handlers.set(key, eventHandlers);
     }
 
     emitEvent(key: string) {
-        const event = this.handlers.get(key);
+      const eventsList = this.handlers.get(key);
 
-        if (!event) {
-           throw new Error('Event under this name does not exist');
-        }
+      if (!eventsList) {
+        return ;
+      }
 
-        return event();
+      for (const event of eventsList) {
+        event();
+      }
     }
 }
 
 const emitter = new MyEventEmitter();
 
 emitter.registerHandler('userUpdated', () => console.log('User was updated'));
+emitter.registerHandler('userUpdated', () => console.log('Second handler of the same event!'));
 
 emitter.emitEvent('userUpdated');
+emitter.emitEvent('unregisteredEvent');

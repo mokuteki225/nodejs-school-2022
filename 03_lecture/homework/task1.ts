@@ -1,5 +1,5 @@
-const si = require('systeminformation');
-const os = require('os');
+import * as os from 'os';
+import * as si from 'systeminformation';
 
 const printSystemInfo = async () => {
   const cpuTemperature = await si.cpuTemperature();
