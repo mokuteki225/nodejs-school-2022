@@ -1,9 +1,9 @@
-const add = (a, b) => a+b;
+const add = (a: number, b: number): number => a+b;
 
-const wrapper = (func) => {
-  const cache = new Map();
+const wrapper = (func: Function): Function => {
+  const cache = new Map<string, number>();
 
-  return (...args) => {
+  return (...args: Array<number>) => {
     const key = args.join(' ');
 
     const cachedValue = cache.get(key); 
